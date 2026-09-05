@@ -6,11 +6,9 @@ function SignUp() {
 
     async function handleSubmit(e){
         e.preventDefault();
-        const{data,error} = await supabase
-        .from('users')
-        .insert([{user_email : email,
-            user_password : password
-        }]);
+        const{data,error} = await supabase.auth.signUp({email : email,
+            password : password
+        });
 
         if (error){
             console.error('Error saving data:', error);
